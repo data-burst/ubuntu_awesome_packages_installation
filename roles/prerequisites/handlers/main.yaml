@@ -1,0 +1,5 @@
+---
+- name: Install pipenv
+  ansible.builtin.pip:
+    name: 
+      - pipenv
