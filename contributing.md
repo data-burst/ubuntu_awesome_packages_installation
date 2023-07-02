@@ -45,7 +45,7 @@ example:
 This indicates that you resolved ticket number 123, which was about refactoring the variables of development machines.
 
 
-feature Development 🛠️
+## Feature Development 🛠️
 
 To write a new feature, follow these steps:
 
