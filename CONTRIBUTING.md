@@ -45,6 +45,13 @@ example:
 This indicates that you resolved ticket number 123, which was about refactoring the variables of development machines.
 
 
+## Branching Name Convention :twisted_rightwards_arrows:
+
+Before creating a feature or resolving a bug, it is required to create an issue on GitHub. This issue will be assigned a number, which should be included in the branch name, separated by hyphens (-). Here is an example of a valid Git branch name:
+```bash
+2-feature-add-contribution-documentation
+```
+
 ## Feature Development 🛠️
 
 To write a new feature, follow these steps:
@@ -56,3 +63,5 @@ time of merging with the main branch, you should squash all of these commits int
 commit message for the whole merge request.
 1. After the commits, check for the running of CI which runs a lint and for some codes runs the appropriate tests. If
 something fails, fix them.
+
+
