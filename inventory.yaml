@@ -1,12 +1,10 @@
 ---
 all:
   hosts:
-    dev_1:
-      ansible_host: 10.2.16.2
-      access_ip: 10.2.16.2
-      ip: 10.2.16.2
+    teamwork-test:
+      ansible_host: teamwork-test
       description: The first development machine
   children:
     dev_machines:
       hosts:
-        dev_1:
+        teamwork-test:
