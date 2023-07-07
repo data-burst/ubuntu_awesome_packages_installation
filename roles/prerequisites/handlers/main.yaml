@@ -3,3 +3,14 @@
   ansible.builtin.pip:
     name: 
       - pipenv
+
+- name: Install pyenv
+  ansible.builtin.uri:
+    url: https://pyenv.run
+    return_content: yes
+  register: script 
+  notify:
+    - Execute pyenv installation script
+
+- name: Execute pyenv installation script
+  ansible.builtin.shell: "{{ script.content }}"
