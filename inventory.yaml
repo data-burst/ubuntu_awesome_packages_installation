@@ -1,0 +1,10 @@
+---
+all:
+  hosts:
+    teamwork-test:
+      ansible_host: teamwork-test
+      description: The first development machine
+  children:
+    dev_machines:
+      hosts:
+        teamwork-test:
