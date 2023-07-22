@@ -3,6 +3,7 @@ all:
   hosts:
     teamwork-test:
       ansible_host: teamwork-test
+      ansible_user: root
       description: The first development machine
   children:
     dev_machines:
