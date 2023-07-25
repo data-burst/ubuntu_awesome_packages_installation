@@ -67,7 +67,7 @@ We follow a Git rebase policy to keep our Git history clean and easy to understa
 
 
 ---
-```go
+```bash
 git fetch origin
 git rebase origin/main
 ```
