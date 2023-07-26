@@ -55,6 +55,7 @@ This indicates that you resolved ticket number 123, which was about refactoring 
 Before creating a feature or resolving a bug, it is required to create an issue on GitHub. This issue will be assigned a number, which should be included in the branch name, separated by hyphens (-). Here is an example of a valid Git branch name:
 ---
 ---
+---
 ```bash
 2-feature-add-contribution-documentation
 ```
@@ -71,7 +72,7 @@ We follow a Git rebase policy to keep our Git history clean and easy to understa
 
 - Git rebase, on the other hand, creates a cleaner and more linear Git history by applying the changes from the feature branch onto the main branch directly. This approach makes it easier to understand the relationship between different commits and can help avoid merge conflicts. However, it can be more difficult to revert changes and can cause conflicts if multiple people are working on the same feature branch.
 
-![Alt text](git-merge-vs-rebase.jpg)
+![Git merge vs Git rebase](assets/git-merge-vs-rebase.jpg)
 
 
 If you decide to use Git rebase, you would first switch to the main branch and fetch the latest changes from the remote repository:
