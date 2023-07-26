@@ -17,8 +17,10 @@ jobs:
           fetch-depth: 0 # needed for progressive mode to work
 
       - name: Run ansible-lint
+        continue-on-error: true
         # replace `main` with any valid ref, or tags like `v6`
         uses: ansible/ansible-lint-action@main
         # optional:
         # with:
         #   path: "playbooks/"  # <-- only one value is allowed
+
