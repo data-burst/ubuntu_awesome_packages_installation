@@ -54,8 +54,6 @@ This indicates that you resolved ticket number 123, which was about refactoring 
 
 Before creating a feature or resolving a bug, it is required to create an issue on GitHub. This issue will be assigned a number, which should be included in the branch name, separated by hyphens (-). Here is an example of a valid Git branch name:
 ---
----
----
 ```bash
 2-feature-add-contribution-documentation
 ```
