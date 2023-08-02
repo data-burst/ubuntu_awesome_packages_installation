@@ -1,0 +1,19 @@
+---
+- name: Install oh-my-zsh
+  become_user: "{{ user }}"
+  ansible.builtin.shell:
+    cmd: y | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    creates: /home/{{ user }}/.oh-my-zsh
+    executable: /bin/bash
+
+- name: Set ZSH theme
+  ansible.builtin.lineinfile:
+    path: /home/{{ user }}/.zshrc
+    regexp: '^ZSH_THEME='
+    line: 'ZSH_THEME="{{ zsh_theme }}"'
+
+- name: Set ZSH plugins
+  ansible.builtin.lineinfile:
+    path: /home/{{ user }}/.zshrc
+    regexp: '^plugins='
+    line: 'plugins=({{ zsh_plugins | join(" ") }})'
