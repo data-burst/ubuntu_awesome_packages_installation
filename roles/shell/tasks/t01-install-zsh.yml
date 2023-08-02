@@ -1,0 +1,8 @@
+---
+- name: Install ZSH
+  become: true
+  ansible.builtin.apt:
+    pkg:
+      - zsh
+  notify:
+    - Set ZSH as default shell

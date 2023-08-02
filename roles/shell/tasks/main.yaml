@@ -1,9 +1,2 @@
 ---
-- name: Install ZSH
-  become: true
-  ansible.builtin.apt:
-    pkg:
-      - zsh
-  notify:
-    - Set ZSH as default shell
-
+- include_tasks: t01-install-zsh.yml
