@@ -1,0 +1,5 @@
+user: USER
+zsh_plugins:
+  - git
+  - docker
+zsh_theme: "xiong-chiamiov-plus"
