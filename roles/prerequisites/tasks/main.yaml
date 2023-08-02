@@ -1,3 +1,3 @@
 ---
-- include_task: t01-python-stuffs.yml
-- include_task: t02-pyenv-required-packages.yml
+- include_tasks: t01-python-stuffs.yml
+- include_tasks: t02-pyenv-required-packages.yml
