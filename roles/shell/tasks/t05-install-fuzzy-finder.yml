@@ -1,0 +1,16 @@
+---
+- name: Install fuzzy finder
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - fzf
+      
+- name: Enable fzf keybindings and auto-completion for zsh
+  ansible.builtin.lineinfile:
+    path: /home/{{ user }}/.zshrc
+    insertafter: '^source'
+    line: "{{ item }}"
+  loop:
+    - source /usr/share/doc/fzf/examples/key-bindings.zsh
+    - source /usr/share/doc/fzf/examples/completion.zsh
