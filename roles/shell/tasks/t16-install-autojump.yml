@@ -1,0 +1,13 @@
+---
+- name: Install autojump
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - autojump
+
+- name: Add autojump plugin to zsh config file
+  ansible.builtin.replace:
+    path: "/home/{{ user }}/.zshrc"
+    regexp: '^(plugins=\(.*)(\))$'
+    replace: '\1 autojump\2'
