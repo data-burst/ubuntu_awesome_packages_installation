@@ -1,0 +1,10 @@
+---
+- name: Install zsh-autosuggestion
+  ansible.builtin.git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: /home/{{ user }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions
+
+- ansible.builtin.replace:
+    path: "/home/{{ user }}/.zshrc"
+    regexp: '^(plugins=\(.*)(\))$'
+    replace: '\1 zsh-autosuggestions\2'
