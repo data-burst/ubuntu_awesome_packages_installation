@@ -1,0 +1,13 @@
+---
+- name: Install xclip
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - xclip
+
+- name: Add 'clipboard' alias to zsh config
+  ansible.builtin.lineinfile:
+    path: /home/{{ user }}/.zshrc
+    line: alias clipboard='xclip -sel clip'
+    insertafter: EOF
