@@ -6,4 +6,3 @@
     pkg:
       - htop
       - iftop 
-      - tree 
