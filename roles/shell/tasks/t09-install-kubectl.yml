@@ -1,0 +1,45 @@
+- name: Install prerequisites
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - apt-transport-https
+      - ca-certificates
+      - curl
+
+- name: Set DNS for Iran limitations
+  ansible.builtin.copy:
+    src: "resolv.conf"
+    dest: "/etc/resolv.conf"
+
+- name: Make directory for gpg key
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Download kubernetes gpg key
+  ansible.builtin.apt_key:
+    url: https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key
+    state: present
+    keyring: /etc/apt/keyrings/kubernetes-apt-keyring.gpg
+
+- name: Add kubernets apt repository
+  ansible.builtin.apt_repository:
+    repo: 'deb [signed-by=/etc/apt/keyrings/kubernetes-apt-keyring.gpg] https://pkgs.k8s.io/core:/stable:/v1.28/deb/ /'
+    state: present
+    update_cache: yes
+    filename: kubernetes
+
+
+- name: Install kubectl
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - kubectl
+
+- name: Rstart DNS service
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: restarted
