@@ -1,0 +1,11 @@
+---
+- name: Download nvim image
+  ansible.builtin.get_url:
+    url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
+    dest: /opt/nvim.appimage
+    mode: 0755
+
+- name: Run nvim.appimage for 1 seconds and then terminate
+  ansible.builtin.command: timeout 1s /opt/nvim.appimage
+  ignore_errors: yes
+  no_log: yes
