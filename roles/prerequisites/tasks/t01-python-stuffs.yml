@@ -8,6 +8,7 @@
       - python3
       - python3-pip
       - virtualenv
+      - python3-setuptools
   notify: 
     - Install pipenv
 

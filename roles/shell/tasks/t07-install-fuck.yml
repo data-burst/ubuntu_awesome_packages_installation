@@ -1,12 +1,3 @@
-- name: Install prerequisites for fuck
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - python3-dev
-      - python3-pip
-      - python3-setuptools
-
 - name: Install fuck with pip
   pip:
     name: thefuck
