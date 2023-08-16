@@ -1,0 +1,11 @@
+- name: Add gnome tweak repository
+  ansible.builtin.apt_repository:
+    repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe'
+    state: present
+
+- name: Install gnome tweak
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - gnome-tweaks
