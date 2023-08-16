@@ -1,0 +1,11 @@
+---
+- name: Download latest version of v2ray plugin for shadowsocks
+  ansible.builtin.get_url:
+    url: https://github.com/shadowsocks/v2ray-plugin/releases/download/v1.3.2/v2ray-plugin-linux-amd64-v1.3.2.tar.gz
+    dest: /tmp/v2ray-plugin-linux-amd64-v1.3.2.tar.gz
+
+- name: Unarchive v2ray plugin
+  ansible.builtin.unarchive:
+    src: /tmp/v2ray-plugin-linux-amd64-v1.3.2.tar.gz
+    dest: /etc/shadowsocks-libev/
+    remote_src: yes
