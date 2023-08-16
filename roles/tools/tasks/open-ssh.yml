@@ -1,0 +1,5 @@
+- name: Install OpenSSH
+  apt:
+    name: openssh-server
+    state: present
+    
