@@ -1,5 +1,6 @@
 ---
 - hosts: all
   roles:
+    - prerequisites
+    - shell
     - tools
-    # - shell
