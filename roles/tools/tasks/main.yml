@@ -3,3 +3,4 @@
 - include_tasks: snap-package-manager.yaml
 - include_tasks: telegram.yml
 - include_tasks: vlc.yml
+- include_tasks: monitoring-packages.yml
