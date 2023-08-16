@@ -1,0 +1,72 @@
+- name: Uninstall older versions of docker
+  ansible.builtin.apt:
+    pkg:
+      - docker
+      - docker-engine
+      - docker.io
+      - containerd
+      - runc
+    state: absent
+
+- name: Set DNS for Iran limitations
+  ansible.builtin.copy:
+    src: "resolv.conf"
+    dest: "/etc/resolv.conf"
+
+- name: Update apt repositories and install prerequisities
+  ansible.builtin.apt:
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - ca-certificates
+      - curl
+      - gnupg
+
+- name: Make directory for gpg key
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Download gpg key
+  ansible.builtin.apt_key:
+    url: https://download.docker.com/linux/debian/gpg
+    state: present
+    keyring: /etc/apt/keyrings/docker.gpg
+
+- name: Get architecture of host
+  ansible.builtin.shell: "dpkg --print-architecture"
+  register: architecture
+
+- name: add docker apt repository
+  ansible.builtin.apt_repository:
+    repo: "deb [arch={{ architecture.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+    update_cache: yes
+    filename: docker
+
+- name: install docker packages
+  ansible.builtin.apt:
+    pkg:
+      - docker-ce
+      - docker-ce-cli
+      - containerd.io
+      - docker-buildx-plugin
+      - docker-compose-plugin
+    state: present
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: verify docker installation
+  ansible.builtin.command: docker run hello-world
+  register: result
+
+- name: docker installation status
+  ansible.builtin.debug:
+    msg: "{{ result.stdout_lines }}"
+
+- name: Rstart DNS service
+  ansible.builtin.service:
+    name: systemd-resolved
+    state: restarted
