@@ -10,18 +10,8 @@
 
 - name: Set DNS for Iran limitations
   ansible.builtin.copy:
-    src: "resolv.conf"
+    src: "../template/resolv.conf.j2"
     dest: "/etc/resolv.conf"
-
-- name: Update apt repositories and install prerequisities
-  ansible.builtin.apt:
-    state: present
-    update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - ca-certificates
-      - curl
-      - gnupg
 
 - name: Make directory for gpg key
   ansible.builtin.file:
@@ -39,14 +29,14 @@
   ansible.builtin.shell: "dpkg --print-architecture"
   register: architecture
 
-- name: add docker apt repository
+- name: Add docker apt repository
   ansible.builtin.apt_repository:
     repo: "deb [arch={{ architecture.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
     update_cache: yes
     filename: docker
 
-- name: install docker packages
+- name: Install docker packages
   ansible.builtin.apt:
     pkg:
       - docker-ce
@@ -58,15 +48,15 @@
     update_cache: yes
     cache_valid_time: 3600
 
-- name: verify docker installation
+- name: Verify docker installation
   ansible.builtin.command: docker run hello-world
   register: result
 
-- name: docker installation status
+- name: Docker installation status
   ansible.builtin.debug:
     msg: "{{ result.stdout_lines }}"
 
-- name: Rstart DNS service
+- name: Restart DNS service
   ansible.builtin.service:
     name: systemd-resolved
     state: restarted
