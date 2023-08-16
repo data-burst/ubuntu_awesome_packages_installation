@@ -1,4 +1,4 @@
 ---
 # tasks file for tools
 - include_tasks: snap-package-manager.yaml
-- include_tasks:  
+- include_tasks: telegram.yml
