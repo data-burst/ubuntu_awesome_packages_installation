@@ -1,0 +1,12 @@
+---
+- name: Add alacritty repository
+  ansible.builtin.apt_repository:
+    repo: 'ppa:mmstick76/alacritty'
+    state: present
+
+- name: Install alacritty
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - alacritty
