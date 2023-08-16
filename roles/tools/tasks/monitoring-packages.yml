@@ -6,3 +6,5 @@
     pkg:
       - htop
       - iftop 
+      - iostat
+      - iotop
