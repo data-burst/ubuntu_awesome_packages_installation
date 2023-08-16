@@ -22,5 +22,6 @@
       - liblzma-dev
       - ca-certificates
       - gnupg
+      - tree
   notify:
     - Install pyenv
