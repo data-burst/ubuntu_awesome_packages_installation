@@ -8,11 +8,6 @@
       - runc
     state: absent
 
-- name: Set DNS for Iran limitations
-  ansible.builtin.copy:
-    src: "../template/resolv.conf.j2"
-    dest: "/etc/resolv.conf"
-
 - name: Make directory for gpg key
   ansible.builtin.file:
     path: /etc/apt/keyrings
@@ -55,8 +50,3 @@
 - name: Docker installation status
   ansible.builtin.debug:
     msg: "{{ result.stdout_lines }}"
-
-- name: Restart DNS service
-  ansible.builtin.service:
-    name: systemd-resolved
-    state: restarted
