@@ -1,4 +1,0 @@
----
-- include_tasks: t01-python-stuffs.yml
-- include_tasks: t02-pyenv-required-packages.yml
-- include_tasks: t03-git.yml
