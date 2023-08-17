@@ -1,0 +1,13 @@
+---
+- include_tasks: zsh.yml
+- include_tasks: alacritty.yml
+- include_tasks: autojump.yml
+- include_tasks: byobu.yml
+- include_tasks: fuck.yml
+- include_tasks: fd-find.yml
+- include_tasks: fuzzy-finder.yml
+- include_tasks: nvim.yml
+- include_tasks: oh-my-zsh.yml
+- include_tasks: vim.yml
+- include_tasks: xclip.yml
+- include_tasks: zsh-autosuggestion.yml

@@ -1,5 +1,5 @@
 ---
-- name: Install Pyenv required packages
+- name: Install required packages
   become: true
   ansible.builtin.apt:
     update_cache: yes
@@ -23,5 +23,6 @@
       - ca-certificates
       - gnupg
       - tree
+      - git
   notify:
     - Install pyenv
