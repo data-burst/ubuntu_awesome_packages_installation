@@ -1,11 +1,7 @@
 - name: Uninstall older versions of docker
   ansible.builtin.apt:
     pkg:
-      - docker
-      - docker-engine
-      - docker.io
-      - containerd
-      - runc
+      - {{ older_docker_packages }}
     state: absent
 
 - name: Make directory for gpg key
@@ -26,22 +22,18 @@
 
 - name: Add docker apt repository
   ansible.builtin.apt_repository:
+    update_cache: yes
     repo: "deb [arch={{ architecture.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
-    update_cache: yes
     filename: docker
 
 - name: Install docker packages
   ansible.builtin.apt:
-    pkg:
-      - docker-ce
-      - docker-ce-cli
-      - containerd.io
-      - docker-buildx-plugin
-      - docker-compose-plugin
-    state: present
     update_cache: yes
     cache_valid_time: 3600
+    pkg:
+      - {{ docker_packages }}
+    state: present
 
 - name: Verify docker installation
   ansible.builtin.command: docker run hello-world
