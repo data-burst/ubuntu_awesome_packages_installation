@@ -1,2 +1,4 @@
 ---
 # defaults file for tools
+docker_gpg_key_url: "https://download.docker.com/linux/debian/gpg"
+kubernetes_gpg_key_usrl: "https://pkgs.k8s.io/core:/stable:/v1.28/deb/Release.key"

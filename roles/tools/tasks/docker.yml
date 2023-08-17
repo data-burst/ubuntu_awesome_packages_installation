@@ -16,7 +16,7 @@
 
 - name: Download gpg key
   ansible.builtin.apt_key:
-    url: https://download.docker.com/linux/debian/gpg
+    url: "{{ docker_gpg_key_url }}"
     state: present
     keyring: /etc/apt/keyrings/docker.gpg
 
