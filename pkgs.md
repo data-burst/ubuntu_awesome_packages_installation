@@ -11,7 +11,7 @@
     chsh -s $(which zsh)
     sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
     ```
-- [X] p10k
+- [ ] p10k
     ```bash
     # source: https://github.com/romkatv/powerlevel10k
     git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -35,10 +35,10 @@
     echo "alias clipboard='xclip -sel clip'" >> ~/.zshrc
     ```
 
-- [ ] fuck
+- [X] fuck
 
-- [ ] Docker
-- [ ] Kubectl
+- [X] Docker
+- [X] Kubectl
 - [X] Shadowsocks
     ```bash
     sudo apt install shadowsocks-libev
@@ -54,17 +54,17 @@
     ```
     sudo apt install byobu
     ```
-- [ ] Gnome extensions
+- [X] Gnome extensions
     ```bash
     sudo apt install -y gnome-shell-extensions
     sudo apt install -y chrome-gnome-shell
     ```
 
-- [ ] vim 
+- [X] vim 
     ```bash
     sudo apt install -y vim
     ```
-- [ ] nvim
+- [X] nvim
 - [X] autojump
     ```bash
     sudo apt install -y autojump
@@ -72,15 +72,15 @@
     ```
 
 - [ ] .ssh files
-- [ ] telegram
-- [ ] tweak
+- [X] telegram
+- [X] tweak
     ```bash
     sudo add-apt-repository universe
     sudo apt install -y gnome-tweaks gnome-shell-extension-manager
     # gnome-tweaks
     ```
 
-- [ ] alacritty
+- [X] alacritty
     ```bash
     curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
     source $HOME/.cargo/env
