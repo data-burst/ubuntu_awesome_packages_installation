@@ -1,7 +1,7 @@
 ---
 - name: Add alacritty repository
   ansible.builtin.apt_repository:
-    repo: 'ppa:mmstick76/alacritty'
+    repo: "{{ alacritty_repo }}"
     state: present
 
 - name: Install alacritty
