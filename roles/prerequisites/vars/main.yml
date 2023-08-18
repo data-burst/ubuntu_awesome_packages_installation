@@ -16,7 +16,8 @@ required_packages:
   - wget
   - curl
   - libncurses5-dev
-  - libncursesw5-dev 
+  - libncursesw5-dev
+  - apt-transport-https 
   - xz-utils 
   - tk-dev 
   - libffi-dev 
