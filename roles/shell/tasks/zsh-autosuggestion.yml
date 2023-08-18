@@ -5,6 +5,6 @@
     dest: /home/{{ user }}/.oh-my-zsh/custom/plugins/zsh-autosuggestions
 
 - ansible.builtin.replace:
-    path: "/home/{{ user }}/.zshrc"
+    path: /home/{{ user }}/.zshrc
     regexp: '^(plugins=\(.*)(\))$'
     replace: '\1 zsh-autosuggestions\2'
