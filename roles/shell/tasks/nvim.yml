@@ -3,7 +3,7 @@
   ansible.builtin.get_url:
     url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
     dest: /opt/nvim.appimage
-    mode: 0755
+    mode: '0755'
 
 - name: Run nvim.appimage briefly in the background
   command: /opt/nvim.appimage
