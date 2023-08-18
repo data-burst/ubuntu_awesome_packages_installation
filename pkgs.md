@@ -14,6 +14,7 @@
 - [X] Alacritty
 - [X] Autojump
 - [X] Vim
+- [X] Terminator
 
 # Tools
 - [X] Docker

@@ -11,3 +11,4 @@
 - include_tasks: vim.yml
 - include_tasks: xclip.yml
 - include_tasks: zsh-autosuggestion.yml
+- include_tasks: terminator.yml
