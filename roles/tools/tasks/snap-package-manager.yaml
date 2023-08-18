@@ -4,7 +4,9 @@
   ignore_errors: true
 
 - name: Install Snap package manager
-  apt:
-    name: snapd
-    state: present
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - snapd
   when: snap_output.rc != 0
