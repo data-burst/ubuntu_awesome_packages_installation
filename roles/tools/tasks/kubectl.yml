@@ -1,12 +1,4 @@
-- name: Install prerequisites
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - apt-transport-https
-      - ca-certificates
-      - curl
-
+---
 - name: Make directory for gpg key
   ansible.builtin.file:
     path: /etc/apt/keyrings
