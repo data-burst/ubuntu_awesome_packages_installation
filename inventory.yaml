@@ -2,7 +2,7 @@
 all:
   hosts:
     teamwork-test:
-      ansible_host: 5.9.209.157
+      ansible_host: 127.0.0.1
       ansible_user: root
       description: The first development machine
   children:
