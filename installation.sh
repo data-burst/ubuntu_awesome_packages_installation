@@ -4,15 +4,20 @@
 flag=""
 remove_repo=false
 set_dns=""
+show_repo_location=false
+
+# Variable to store the repository location
+repo_location=""
 
 # Function to display script usage
 display_usage() {
-    echo "Usage: $0 [--local|--remote] [--remove-repo] [--set-dns <DNS_IP>]"
+    echo "Usage: $0 [--local|--remote] [--remove-repo] [--set-dns <DNS_IP>] [--show-repo-location]"
     echo "Options:"
-    echo "  --local          : Run the playbook on the local machine"
-    echo "  --remote         : Run the playbook on a remote machine"
-    echo "  --remove-repo    : Remove the cloned repository after execution"
-    echo "  --set-dns <IP>   : Set a custom DNS IP"
+    echo "  --local                : Run the playbook on the local machine"
+    echo "  --remote               : Run the playbook on a remote machine"
+    echo "  --remove-repo          : Remove the cloned repository after execution"
+    echo "  --set-dns <IP>         : Set a custom DNS IP"
+    echo "  --show-repo-location   : Display the location of the cloned repository and exit"
 }
 
 # Parse command-line arguments
@@ -30,6 +35,10 @@ while [[ $# -gt 0 ]]; do
             set_dns=$2
             shift 2
             ;;
+        --show-repo-location)
+            show_repo_location=true
+            shift
+            ;;
         --help)
             display_usage
             exit 0
@@ -40,6 +49,20 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+# Function to get the location of the cloned repository
+get_repo_location() {
+    # Logic to determine the repository location
+    # Replace this with the actual logic to fetch the repository location
+    repo_location="/tmp"
+}
+
+# Check if the --show-repo-location option is specified
+if [ "$show_repo_location" = true ]; then
+    get_repo_location
+    echo "Cloned repository location: $repo_location"
+    exit 0
+fi
 
 # Check if Ansible is installed and install it if not
 if ! command -v ansible &> /dev/null; then
