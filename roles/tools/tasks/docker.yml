@@ -1,8 +1,9 @@
 - name: Uninstall older versions of docker
   ansible.builtin.apt:
     pkg:
-      - "{{ older_docker_packages }}"
+      - "{{ item }}"
     state: absent
+  with_items: "{{ older_docker_packages }}"
 
 - name: Make directory for gpg key
   ansible.builtin.file:
@@ -32,8 +33,10 @@
     update_cache: yes
     cache_valid_time: 3600
     pkg:
-      - "{{ docker_packages }}"
+      - "{{ item }}"
     state: present
+  with_items: "{{ docker_packages }}"
+
 
 - name: Verify docker installation
   ansible.builtin.command: docker run hello-world
