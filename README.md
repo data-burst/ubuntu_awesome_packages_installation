@@ -8,11 +8,9 @@ A bash script to automatically set up your Ubuntu system with essential tools us
 - 🛠 **All-In-One Installation**: From foundational packages to key utilities and top-tier applications, our playbook gets your system ready in no time.
 - 📦 **Diverse Toolset**: Whether it's enhancing your terminal, setting up system tools like Docker, or just ensuring you can enjoy media with VLC, we've got it all covered.
 
-## Quick Start 🚀
+### How to Use 🚀
 
-### How to Use
-
-4. **Download and Run the script**:
+**Download and Run the script**:
     ```bash
     git clone https:/github.com/data-burst/ubuntu_awesome_packages_installation.git && ./installation.sh
     ```
@@ -20,9 +18,9 @@ A bash script to automatically set up your Ubuntu system with essential tools us
 
 Here are some of the tools our Ansible playbook will install:
 
-- Prerequisites: `python3`, `python3-pip`, `python3-setuptools`, `virtualenv`, `make`, `build-essential`, `libssl-dev`, `zlib1g-dev`, `libbz2-dev`, `libreadline-dev`, `libsqlite3-dev`, `wget`, `curl`, `libncurses5-dev`, `libncursesw5-dev`, `apt-transport-https`, `xz-utils`, `tk-dev`, `libffi-dev`, `liblzma-dev`, `ca-certificates`, `gnupg`, `tree`, `git`
-- Shell Utilities: `zsh`, `oh-my-zsh`, `autojump`, `alacritty`, `byobu`, `fuck`, `fd-find`, `fuzzy-finder`, `nvim`, `vim`, `xclip`, `zsh-autosuggestion`, `terminator`
-- Tools: `snap-package-manager`, , `telegram`, `vlc`, `htop`, `iftop`, `iostat`, `iotop`, `tweak`, `v2ray-plugin`, `shadowsocks`, `gnome-extension`, `kubectl`, `docker`, `open-ssh`
+- Prerequisites: `python3`, `python3-pip`, `python3-setuptools`, `virtualenv`, `make`, `build-essential`, `wget`, `curl`, `apt-transport-https`, `ca-certificates`, `gnupg`, `tree`, `git`, `xz-utils`, `tk-dev`, `libffi-dev`, `liblzma-dev`, `libssl-dev`, `zlib1g-dev`, `libbz2-dev`, `libreadline-dev`, `libsqlite3-dev`, `libncurses5-dev`, `libncursesw5-dev`
+- Shell Utilities: `zsh`, `oh-my-zsh`, `zsh-autosuggestion`, `vim`, `nvim`, `alacritty`, `terminator`, `byobu`, `fd-find`, `fuzzy-finder`, `xclip`, `autojump`, `fuck`
+- Tools:  `open-ssh`, `snap-package-manager`, `docker`, `kubectl`, `htop`, `iftop`, `iostat`, `iotop`, `tweak`, `shadowsocks`, `v2ray-plugin`, `gnome-extension`, `telegram`, `vlc`
 
 ## Contributions 🤝
 
