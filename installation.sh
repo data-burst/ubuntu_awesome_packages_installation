@@ -5,6 +5,16 @@ flag=""
 remove_repo=false
 set_dns=""
 
+# Function to display script usage
+display_usage() {
+    echo "Usage: $0 [--local|--remote] [--remove-repo] [--set-dns <DNS_IP>]"
+    echo "Options:"
+    echo "  --local          : Run the playbook on the local machine"
+    echo "  --remote         : Run the playbook on a remote machine"
+    echo "  --remove-repo    : Remove the cloned repository after execution"
+    echo "  --set-dns <IP>   : Set a custom DNS IP"
+}
+
 # Parse command-line arguments
 while [[ $# -gt 0 ]]; do
     case $1 in
@@ -20,13 +30,16 @@ while [[ $# -gt 0 ]]; do
             set_dns=$2
             shift 2
             ;;
+        --help)
+            display_usage
+            exit 0
+            ;;
         *)
-            shift
+            display_usage
+            exit 1
             ;;
     esac
 done
-
-
 
 # Check if Ansible is installed and install it if not
 if ! command -v ansible &> /dev/null; then
