@@ -122,10 +122,11 @@ fi
 
 # Check if the inventory file exists in the cloned repository
 inventory_file="$clone_dir/inventory.yaml"
+install_file="$clone_dir/install.yaml"
 
 # Run Ansible with the appropriate options
 if [ "$flag" == "--local" ]; then
-    ansible-playbook -i "$inventory_file" install.yaml --connection=local --ask-become-pass
+    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass
 elif [ "$flag" == "--remote" ]; then
     inventory_path="" # Variable to store the custom inventory path
 
@@ -149,7 +150,7 @@ elif [ "$flag" == "--remote" ]; then
     fi
 
     # Execute Ansible with the specified options
-    ansible-playbook -i "$inventory_path" install.yaml
+    ansible-playbook -i "$inventory_path" "$install_file"
 else
     echo "Invalid option. Please use either --local or --remote flag."
     exit 1
