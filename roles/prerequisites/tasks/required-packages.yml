@@ -5,6 +5,7 @@
     update_cache: yes
     cache_valid_time: 3600
     pkg:
-      - "{{ required_packages }}"
+      - "{{ item }}"
+  with_items: "{{ required_packages }}"
   notify:
     - Install pyenv

@@ -5,6 +5,7 @@
     update_cache: yes
     cache_valid_time: 3600
     pkg:
-      - "{{ python_required_stuff }}"
+      - "{{ item }}"
+  with_items: "{{ python_required_stuff }}"
   notify: 
     - Install pipenv
