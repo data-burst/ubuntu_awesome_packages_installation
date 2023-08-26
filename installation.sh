@@ -21,7 +21,7 @@ display_usage() {
     echo "  --show-repo-location   : Display the location of the cloned repository and exit"
     echo "  --inventory <PATH>     : Specify the path to the inventory file (required for --remote)"
     echo "  --ssh-key <SSH_KEY_FILE> : Specify the path to the SSH key file (required for --remote)"
-    echo "  --become-user <USER>   : Specify the user for running Ansible (required for --local)"
+    echo "  --user <USER>   : Specify the user for running Ansible (required for --local)"
 }
 
 # Parse command-line arguments
@@ -52,8 +52,8 @@ while [[ $# -gt 0 ]]; do
             ssh_key=$2
             shift 2
             ;;
-        --become-user)
-            become_user=$2
+        --user)
+            user=$2
             shift 2
             ;;
         --help)
@@ -143,12 +143,12 @@ install_file="$clone_dir/install.yaml"
 
 # Run Ansible with the appropriate options
 if [ "$flag" == "--local" ]; then
-    if [ -z "$become_user" ]; then
-        echo "ERROR: --become-user option is required when using --local flag."
+    if [ -z "$user" ]; then
+        echo "ERROR: --user option is required when using --local flag."
         display_usage
         exit 1
     fi
-    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --become-user="$become_user"
+    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass --user="$user"
 elif [ "$flag" == "--remote" ]; then
     # Check if the --remote flag is used and enforce --ssh-key option
     if [ "$use_ssh_key" = false ]; then
