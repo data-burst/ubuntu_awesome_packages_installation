@@ -5,19 +5,22 @@ flag=""
 remove_repo=false
 set_dns=""
 show_repo_location=false
-
+use_ssh_key=false
+ssh_key=""
 # Variable to store the repository location
 repo_location=""
 
 # Function to display script usage
 display_usage() {
-    echo "Usage: $0 [--local|--remote] [--remove-repo] [--set-dns <DNS_IP>] [--show-repo-location]"
+    echo "Usage: $0 <--local|--remote> [--remove-repo] [--set-dns <DNS_IP>] [--show-repo-location] [--inventory <INVENTORY_PATH>] [--ssh-key <SSH_KEY_FILE>]"
     echo "Options:"
     echo "  --local                : Run the playbook on the local machine"
     echo "  --remote               : Run the playbook on a remote machine"
     echo "  --remove-repo          : Remove the cloned repository after execution"
     echo "  --set-dns <IP>         : Set a custom DNS IP"
     echo "  --show-repo-location   : Display the location of the cloned repository and exit"
+    echo "  --inventory <PATH>     : Specify the path to the inventory file (required for --remote)"
+    echo "  --ssh-key <SSH_KEY_FILE> : Specify the path to the SSH key file (required for --remote)"
 }
 
 # Parse command-line arguments
@@ -39,6 +42,15 @@ while [[ $# -gt 0 ]]; do
             show_repo_location=true
             shift
             ;;
+        --inventory)
+            inventory_path=$2
+            shift 2
+            ;;
+        --ssh-key)
+            use_ssh_key=true
+            ssh_key=$2
+            shift 2
+            ;;
         --help)
             display_usage
             exit 0
@@ -56,6 +68,13 @@ get_repo_location() {
     # Replace this with the actual logic to fetch the repository location
     repo_location="/tmp"
 }
+
+# Check if the --remote flag is used and enforce --ssh-key option
+if [ "$use_ssh_key" = false ]; then
+    echo "Error: When using --remote, the --ssh-key option is required."
+    display_usage
+    exit 1
+fi
 
 # Check if the --show-repo-location option is specified
 if [ "$show_repo_location" = true ]; then
@@ -126,23 +145,8 @@ install_file="$clone_dir/install.yaml"
 
 # Run Ansible with the appropriate options
 if [ "$flag" == "--local" ]; then
-    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass
+    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass --private-key="$ssh_key"
 elif [ "$flag" == "--remote" ]; then
-    inventory_path="" # Variable to store the custom inventory path
-
-    # Parse command-line arguments
-    while [[ $# -gt 0 ]]; do
-        case $1 in
-            --inventory)
-                inventory_path=$2
-                shift 2
-                ;;
-            *)
-                shift
-                ;;
-        esac
-    done
-
     # Validate inventory path
     if [ -z "$inventory_path" ]; then
         echo "Custom inventory path not provided. Please use the --inventory flag to specify the path to the inventory file."
@@ -150,7 +154,7 @@ elif [ "$flag" == "--remote" ]; then
     fi
 
     # Execute Ansible with the specified options
-    ansible-playbook -i "$inventory_path" "$install_file"
+    ansible-playbook -i "$inventory_path" "$install_file" --private-key="$ssh_key"
 else
     echo "Invalid option. Please use either --local or --remote flag."
     exit 1
