@@ -148,7 +148,10 @@ if [ "$flag" == "--local" ]; then
         display_usage
         exit 1
     fi
-    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass --user="$user"
+    
+    sed -i "s/ansible_user: .*/ansible_user: $user/g" "$clone_dir/inventory.yaml"
+    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass --user "$user"
+
 elif [ "$flag" == "--remote" ]; then
     # Check if the --remote flag is used and enforce --ssh-key option
     if [ "$use_ssh_key" = false ]; then
