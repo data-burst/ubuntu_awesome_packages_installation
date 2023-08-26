@@ -1,7 +1,6 @@
+---
 - name: Install OpenSSH
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - openssh-server
-    
+  apt:
+    name: openssh-server
+    state: present
+  become: true

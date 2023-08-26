@@ -1,4 +1,6 @@
+---
 - name: Install VLC
-  snap:
+  apt:
     name: vlc
     state: present
+  become: true

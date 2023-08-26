@@ -1,7 +1,6 @@
-- name: Add DNS entries to /etc/resolv.conf
-  blockinfile:
+---
+- name: Add DNS entry
+  lineinfile:
     path: /etc/resolv.conf
-    block: "{{ lookup('template', 'roles/prerequisites/templates/resolv.conf.j2') }}"
-    marker: "# {mark} ANSIBLE MANAGED BLOCK "
+    line: "{{ lookup('template', 'roles/prerequisites/templates/resolv.conf.j2') }}"
     insertbefore: BOF
-    backup: yes

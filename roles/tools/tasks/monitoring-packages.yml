@@ -6,5 +6,5 @@
     pkg:
       - htop
       - iftop 
-      - iostat
+      - sysstat
       - iotop

@@ -28,20 +28,20 @@
     state: present
     filename: docker
 
-- name: Install docker packages
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - "{{ item }}"
+- name: Install Docker packages
+  apt:
+    name: "{{ item }}"
     state: present
-  with_items: "{{ docker_packages }}"
+  become: true
+  loop: "{{ docker_packages }}"
 
+- name: Check Docker service status
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+  register: docker_status
 
-- name: Verify docker installation
-  ansible.builtin.command: docker run hello-world
-  register: result
-
-- name: Docker installation status
-  ansible.builtin.debug:
-    msg: "{{ result.stdout_lines }}"
+- name: Print Docker service status
+  debug:
+    var: docker_status

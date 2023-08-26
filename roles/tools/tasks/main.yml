@@ -7,7 +7,7 @@
 - include_tasks: tweak.yml
 - include_tasks: v2ray-plugin.yml
 - include_tasks: shadowsocks.yml
-- include_tasks: gnome-extension.yml
+- include_tasks: gnome-extensions.yml
 - include_tasks: kubectl.yml
 - include_tasks: docker.yml
 - include_tasks: open-ssh.yml

@@ -1,7 +1,6 @@
 ---
 - name: Install terminator
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - terminator
+  apt:
+    name: terminator
+    state: present
+  become: true
