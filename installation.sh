@@ -69,13 +69,6 @@ get_repo_location() {
     repo_location="/tmp"
 }
 
-# Check if the --remote flag is used and enforce --ssh-key option
-if [ "$use_ssh_key" = false ]; then
-    echo "Error: When using --remote, the --ssh-key option is required."
-    display_usage
-    exit 1
-fi
-
 # Check if the --show-repo-location option is specified
 if [ "$show_repo_location" = true ]; then
     get_repo_location
@@ -145,8 +138,14 @@ install_file="$clone_dir/install.yaml"
 
 # Run Ansible with the appropriate options
 if [ "$flag" == "--local" ]; then
-    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass --private-key="$ssh_key"
+    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass --private-key="$ssh_key" --become-user firefighter
 elif [ "$flag" == "--remote" ]; then
+    # Check if the --remote flag is used and enforce --ssh-key option
+    if [ "$use_ssh_key" = false ]; then
+        echo "Error: When using --remote, the --ssh-key option is required."
+        display_usage
+        exit 1
+    fi
     # Validate inventory path
     if [ -z "$inventory_path" ]; then
         echo "Custom inventory path not provided. Please use the --inventory flag to specify the path to the inventory file."
