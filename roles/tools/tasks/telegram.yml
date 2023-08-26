@@ -1,4 +1,5 @@
 - name: Install Telegram
-  ansible.builtin.snap:
+  apt:
     name: telegram-desktop
     state: present
+  become: true

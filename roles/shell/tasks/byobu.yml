@@ -1,7 +1,11 @@
 ---
-- name: Install byobu
-  ansible.builtin.apt:
+- name: Update apt cache
+  apt:
     update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - byobu
+  become: true
+
+- name: Install Byobu
+  apt:
+    name: byobu
+    state: present
+  become: true

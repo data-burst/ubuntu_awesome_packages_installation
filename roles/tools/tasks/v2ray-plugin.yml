@@ -4,6 +4,11 @@
     url: https://github.com/shadowsocks/v2ray-plugin/releases/download/v{{ shadowsocks_version }}/v2ray-plugin-linux-amd64-v{{ shadowsocks_version }}.tar.gz
     dest: /tmp/v2ray-plugin-linux-amd64-v{{ shadowsocks_version }}.tar.gz
 
+- name: Create destination directory
+  ansible.builtin.file:
+    path: /etc/shadowsocks-libev/
+    state: directory
+
 - name: Unarchive v2ray plugin
   ansible.builtin.unarchive:
     src: /tmp/v2ray-plugin-linux-amd64-v{{ shadowsocks_version }}.tar.gz

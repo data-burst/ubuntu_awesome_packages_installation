@@ -1,3 +1,4 @@
+---
 - name: Check if Snap package manager is installed
   command: dpkg -s snapd
   register: snap_output

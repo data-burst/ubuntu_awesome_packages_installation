@@ -1,4 +1,4 @@
-user: USER
+user: "{{ ansible_user }}"
 zsh_plugins:
   - git
   - docker

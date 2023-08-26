@@ -1,7 +1,6 @@
 ---
 - name: Install fd-find
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - fd-find
+  apt:
+    name: fd-find
+    state: present
+  become: true

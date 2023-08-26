@@ -26,3 +26,6 @@ required_packages:
   - gnupg
   - tree
   - git
+  - cmake
+  - libxcb-xfixes0-dev
+  - libxkbcommon-x11-dev

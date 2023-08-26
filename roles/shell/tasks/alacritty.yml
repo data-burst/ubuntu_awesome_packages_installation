@@ -1,12 +1,14 @@
 ---
-- name: Add alacritty repository
-  ansible.builtin.apt_repository:
-    repo: "{{ alacritty_repo }}"
-    state: present
+- name: Get URL pointing to the latest alacritty .deb
+  # Ignore linter warning abot wget - it's cleaner than the alternative.
+  args:
+    warn: false
+  shell: wget --quiet https://github.com/jwilm/alacritty/releases -O- | grep "_amd64.deb" | grep release | cut -d '"' -f2 | head -1 | sed "s/^/https:\/\/github.com/"
+  register: alacritty_latest_deb_url
+  failed_when: alacritty_latest_deb_url.rc > 0
+  changed_when: false
 
 - name: Install alacritty
-  ansible.builtin.apt:
-    update_cache: yes
-    cache_valid_time: 3600
-    pkg:
-      - alacritty
+  apt:
+    deb: "{{ alacritty_latest_deb_url.stdout }}"
+    state: present

@@ -2,13 +2,15 @@
 - name: Download nvim image
   ansible.builtin.get_url:
     url: https://github.com/neovim/neovim/releases/download/nightly/nvim.appimage
-    dest: /opt/nvim.appimage
+    dest: "{{ '/home/' + user + '/nvim.appimage' if user != 'root' else '/root/nvim.appimage' }}"
     mode: '0755'
 
 - name: Run nvim.appimage briefly in the background
-  command: /opt/nvim.appimage
+  command: "{{ '/home/' + user + '/nvim.appimage' if user != 'root' else '/root/nvim.appimage' }}"
   async: 5
   poll: 0
 
 - name: Ensure nvim.appimage is not running
   command: pkill -f nvim.appimage
+  ignore_errors: yes
+  failed_when: false

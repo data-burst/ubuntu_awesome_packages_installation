@@ -1,19 +1,23 @@
 ---
+- name: Check if .oh-my-zsh exists
+  stat:
+    path: "{{ '/home/' + user + '/.oh-my-zsh' if user != 'root' else '/root/.oh-my-zsh' }}"
+  register: ohmyzsh_check
+
 - name: Install oh-my-zsh
-  become_user: "{{ user }}"
   ansible.builtin.shell:
-    cmd: y | sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
-    creates: /home/{{ user }}/.oh-my-zsh
-    executable: /bin/bash
+    cmd: >
+      sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+  when: not ohmyzsh_check.stat.exists
 
 - name: Set ZSH theme
   ansible.builtin.lineinfile:
-    path: /home/{{ user }}/.zshrc
+    path: "{{ '/home/' + user + '/.zshrc' if user != 'root' else '/root/.zshrc' }}"
     regexp: '^ZSH_THEME='
     line: 'ZSH_THEME="{{ zsh_theme }}"'
 
 - name: Set ZSH plugins
   ansible.builtin.lineinfile:
-    path: /home/{{ user }}/.zshrc
+    path: "{{ '/home/' + user + '/.zshrc' if user != 'root' else '/root/.zshrc' }}"
     regexp: '^plugins='
     line: 'plugins=({{ zsh_plugins | join(" ") }})'
