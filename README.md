@@ -15,11 +15,11 @@ A bash script to automatically set up your Ubuntu system with essential tools us
 
 To run the installation script, you can use the following command:
 ---
+---
 ```bash
-curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/5-feature-add-ansible-packages/installation.sh" | bash -s -- --local --user <USER> [--set-dns <DNS_IP>]
+curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --local --user <USER> [--set-dns <DNS_IP>]
 ```
 ---
-
 Replace **<USER>** with the desired user for running Ansible, and **<DNS_IP>** with the desired custom DNS IP if needed.
 
 This command will download the script from the specified URL and execute it with the --local flag, indicating that the playbook should run on the local machine. The --user flag allows you to specify the user under which Ansible should be executed. The optional --set-dns flag can be used to set a custom DNS IP.
@@ -41,10 +41,9 @@ If you want to run the playbook in local mode and set a custom DNS, you can use 
 
 ---
 ```bash
-curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/5-feature-add-ansible-packages/installation.sh" | bash -s -- --local --user <USER> --set-dns <DNS_IP>
+curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --local --user <USER> --set-dns <DNS_IP>
 ```
 ---
-
 Replace **<USER>** with the desired user for running Ansible, and **<DNS_IP>** with the desired custom DNS IP.
 
 The script will execute the playbook on the local machine, running as the specified user, and set the specified custom DNS IP. After the execution is complete, the custom DNS configuration will be removed.
@@ -54,10 +53,9 @@ If you want to run the playbook on a remote machine and set a custom DNS, you ca
 
 ---
 ```bash
-curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/5-feature-add-ansible-packages/installation.sh" | bash -s -- --remote --inventory /path/to/inventory --ssh-key /path/to/ssh/key [--set-dns <DNS_IP>]
+curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --remote --inventory /path/to/inventory --ssh-key /path/to/ssh/key [--set-dns <DNS_IP>]
 ```
 ---
-
 Replace **/path/to/inventory** with the actual path to your inventory file, **<SSH_KEY_FILE>** with the path to your SSH key file, and **<DNS_IP>** with the desired custom DNS IP if needed.
 
 Before running the command, make sure you have an SSH key set up. If you don't have an SSH key, you can generate one using the following command:
@@ -67,7 +65,6 @@ Before running the command, make sure you have an SSH key set up. If you don't h
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
 ---
-
 Replace **"your_email@example.com"** with your email address. Press Enter when prompted to specify the file in which to save the key (accept the default location) and to set a passphrase (optional).
 
 To set the SSH key on the remote machine, you can use the ssh-copy-id command. Here's an example:
@@ -77,7 +74,6 @@ To set the SSH key on the remote machine, you can use the ssh-copy-id command. H
 ssh-copy-id -i <SSH_KEY_FILE> user@remote_host
 ```
 ---
-
 Replace **<SSH_KEY_FILE>** with the path to your SSH public key file and user@remote_host with the username and hostname of the remote machine.
 
 Once the SSH key is set on the remote machine, you can use the --remote flag along with the appropriate inventory file and SSH key file paths in the installation script command mentioned earlie
@@ -105,7 +101,6 @@ all:
 
 ```
 ---
-
 3. Save the file with a .yaml extension, for example, inventory.yaml.
 
 4. Customize the inventory file by replacing the values (virtualmachine01, 127.0.0.1, root, and the description) with the appropriate values for your setup. You can add more hosts and groups as needed.
