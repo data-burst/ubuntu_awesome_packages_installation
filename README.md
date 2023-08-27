@@ -11,9 +11,9 @@ A bash script to automatically set up your Ubuntu system with essential tools us
 ### How to Use 🚀
 
 **Download and Run the script**:
-    ```bash
-    git clone https:/github.com/data-burst/ubuntu_awesome_packages_installation.git && ./installation.sh
-    ```
+```bash
+git clone https:/github.com/data-burst/ubuntu_awesome_packages_installation.git && ./installation.sh
+```
 ## Tools Installed 🧰
 
 Here are some of the tools our Ansible playbook will install:
