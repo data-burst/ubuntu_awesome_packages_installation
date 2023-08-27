@@ -1,9 +1,34 @@
 
 # Ubuntu Awesome Packages 🎉
 
-![ubuntu-awesome](assets/ubuntu-awesome.PNG)
+<p align=center>
+<img src="assets/ubuntu-awesome.PNG" alt="Ubuntu Awesome Packages" width="500" height="500">
+</p>
+
+<p align=center>
+    <a href="https://github.com/data-burst/ubuntu_awesome_packages_installation/graphs/contributors">
+    <img src="https://img.shields.io/github/contributors-anon/data-burst/ubuntu_awesome_packages_installation?color=yellow&style=flat-square" alt="contributors">
+    </a>
+    <a href="https://github.com/data-burst/ubuntu_awesome_packages_installation/LICENSE"> 
+    <img src="https://img.shields.io/badge/MIT-blue.svg?style=flat-square&label=license" alt="license">
+</a>
+</p>
 
 A bash script to automatically set up your Ubuntu system with essential tools using Ansible.
+
+## Table of Contents 🏗️
+
+- [Ubuntu Awesome Packages 🎉](#ubuntu-awesome-packages-)
+  - [Table of Contents 🏗️](#table-of-contents-️)
+  - [Features 🌠](#features-)
+  - [How to Use 🚀](#how-to-use-)
+    - [Flags 🎏](#flags-)
+    - [Running in Local Mode with Custom DNS 📌](#running-in-local-mode-with-custom-dns-)
+    - [Running on a Remote Machine with Custom DNS 📌](#running-on-a-remote-machine-with-custom-dns-)
+    - [Creating the Inventory File 📌](#creating-the-inventory-file-)
+  - [Tools Installed 🧰](#tools-installed-)
+  - [Contributions 🤝](#contributions-)
+  - [License](#license)
 
 ## Features 🌠
 
@@ -14,17 +39,20 @@ A bash script to automatically set up your Ubuntu system with essential tools us
 ## How to Use 🚀
 
 To run the installation script, you can use the following command:
+
 ---
----
+
 ```bash
 curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --local --user <USER> [--set-dns <DNS_IP>]
 ```
+
 ---
 Replace **<USER>** with the desired user for running Ansible, and **<DNS_IP>** with the desired custom DNS IP if needed.
 
 This command will download the script from the specified URL and execute it with the --local flag, indicating that the playbook should run on the local machine. The --user flag allows you to specify the user under which Ansible should be executed. The optional --set-dns flag can be used to set a custom DNS IP.
 
 ### Flags 🎏
+
 **The installation script supports the following flags:**
 
 - --local: Run the playbook on the local machine. 
@@ -49,36 +77,44 @@ Replace **<USER>** with the desired user for running Ansible, and **<DNS_IP>** w
 The script will execute the playbook on the local machine, running as the specified user, and set the specified custom DNS IP. After the execution is complete, the custom DNS configuration will be removed.
 
 ### Running on a Remote Machine with Custom DNS 📌
+
 If you want to run the playbook on a remote machine and set a custom DNS, you can use the following command:
 
 ---
+
 ```bash
 curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --remote --inventory /path/to/inventory --ssh-key /path/to/ssh/key [--set-dns <DNS_IP>]
 ```
+
 ---
 Replace **/path/to/inventory** with the actual path to your inventory file, **<SSH_KEY_FILE>** with the path to your SSH key file, and **<DNS_IP>** with the desired custom DNS IP if needed.
 
 Before running the command, make sure you have an SSH key set up. If you don't have an SSH key, you can generate one using the following command:
 
 ---
+
 ```bash
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
+
 ---
 Replace **"your_email@example.com"** with your email address. Press Enter when prompted to specify the file in which to save the key (accept the default location) and to set a passphrase (optional).
 
 To set the SSH key on the remote machine, you can use the ssh-copy-id command. Here's an example:
 
 ---
+
 ```bash
 ssh-copy-id -i <SSH_KEY_FILE> user@remote_host
 ```
+
 ---
 Replace **<SSH_KEY_FILE>** with the path to your SSH public key file and user@remote_host with the username and hostname of the remote machine.
 
 Once the SSH key is set on the remote machine, you can use the --remote flag along with the appropriate inventory file and SSH key file paths in the installation script command mentioned earlie
 
 ### Creating the Inventory File 📌
+
 To create an inventory file for remote machine configurations, follow these steps:
 
 1. Open a text editor and create a new file.
@@ -86,25 +122,26 @@ To create an inventory file for remote machine configurations, follow these step
 2. Copy the following content into the file:
 
 ---
+
 ```bash
 ---
 all:
-  hosts:
+hosts:
     virtualmachine01:
-      ansible_host: 127.0.0.1
-      ansible_user: root
-      description: The first development machine
-  children:
+    ansible_host: 127.0.0.1
+    ansible_user: root
+    description: The first development machine
+children:
     dev_machines:
-      hosts:
+    hosts:
         virtualmachine01:
-
 ```
+
 ---
+
 3. Save the file with a .yaml extension, for example, inventory.yaml.
 
 4. Customize the inventory file by replacing the values (virtualmachine01, 127.0.0.1, root, and the description) with the appropriate values for your setup. You can add more hosts and groups as needed.
-
 
 Now you can use the created inventory file by providing its path with the --inventory flag when running the script with the --remote flag.
 
@@ -122,9 +159,8 @@ Here are some of the tools our Ansible playbook will install:
 
 ## Contributions 🤝
 
-Open to suggestions and improvements! If there's a tool or utility you'd like to see added, or any other enhancements, feel free to contribute.
+Open to suggestions and improvements! If there's a tool or utility you'd like to see added, or any other enhancements, feel free to contribute. Please take a look at our [CONTIRIBUTION.md](https://github.com/data-burst/ubuntu_awesome_packages_installation/blob/master/CONTRIBUTING.md) file for more information on how to get started. We look forward to collaborating with you!
 
 ## License
 
 Licensed under the MIT License. Check [LICENSE.md](LICENSE.md) for more details.
-
