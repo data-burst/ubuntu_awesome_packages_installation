@@ -150,7 +150,8 @@ if [ "$flag" == "--local" ]; then
     fi
     
     sed -i "s/ansible_user: .*/ansible_user: $user/g" "$clone_dir/inventory.yaml"
-    ansible-playbook -i "$inventory_file" "$install_file" --connection=local --ask-become-pass --user "$user"
+    cd "$clone_dir" && git checkout 5-feature-add-ansible-packages
+    ansible-playbook -i "$inventory_file" "$install_file" --connection=local  --become --become-user=root
 
 elif [ "$flag" == "--remote" ]; then
     # Check if the --remote flag is used and enforce --ssh-key option
@@ -166,6 +167,7 @@ elif [ "$flag" == "--remote" ]; then
     fi
 
     # Execute Ansible with the specified options
+    cd "$clone_dir" && git checkout 5-feature-add-ansible-packages
     ansible-playbook -i "$inventory_path" "$install_file" --private-key="$ssh_key"
 else
     echo "Invalid option. Please use either --local or --remote flag."

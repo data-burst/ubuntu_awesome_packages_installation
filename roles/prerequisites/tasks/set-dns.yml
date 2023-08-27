@@ -1,6 +1,9 @@
 ---
 - name: Add DNS entry
+  become: true
+  become_user: "root"
   lineinfile:
     path: /etc/resolv.conf
     line: "{{ lookup('template', 'roles/prerequisites/templates/resolv.conf.j2') }}"
     insertbefore: BOF
+    state: present

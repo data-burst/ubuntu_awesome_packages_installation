@@ -1,0 +1,30 @@
+---
+- name: Check if user exists
+  command: "getent passwd {{ ansible_user }}"
+  register: check_user_existence
+  ignore_errors: true
+  failed_when: false
+
+- name: Create the user if it doesn't exist
+  user:
+    name: "{{ ansible_user }}"
+    state: present
+    shell: /bin/bash
+    createhome: yes
+  when: check_user_existence.rc != 0
+
+- name: Create home directory
+  file:
+    path: "/home/{{ ansible_user }}"
+    state: directory
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    mode: "0755"
+  when: check_user_existence.rc != 0
+
+- name: Add sudo privileges
+  lineinfile:
+    dest: /etc/sudoers
+    line: "{{ ansible_user }} ALL=(ALL) NOPASSWD: ALL"
+    validate: "/usr/sbin/visudo -cf %s"
+  when: check_user_existence.rc == 0
