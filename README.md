@@ -1,7 +1,7 @@
 
 # Ubuntu Awesome Packages 🎉
 
-                                                ![ubuntu-awesome](assets/ubuntu-awesome.PNG)
+![ubuntu-awesome](assets/ubuntu-awesome.PNG)
 
 A bash script to automatically set up your Ubuntu system with essential tools using Ansible.
 
