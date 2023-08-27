@@ -6,3 +6,5 @@
       - zsh
   notify:
     - Set ZSH as default shell
+
+  

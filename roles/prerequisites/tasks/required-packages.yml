@@ -6,6 +6,7 @@
     cache_valid_time: 3600
     pkg:
       - "{{ item }}"
+    state: present
   with_items: "{{ required_packages }}"
   notify:
     - Install pyenv
