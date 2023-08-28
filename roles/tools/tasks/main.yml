@@ -2,12 +2,12 @@
 # tasks file for tools
 - include_tasks: snap-package-manager.yaml
 - include_tasks: telegram.yml
-- include_tasks: vlc.yml
 - include_tasks: monitoring-packages.yml
 - include_tasks: tweak.yml
 - include_tasks: v2ray-plugin.yml
 - include_tasks: shadowsocks.yml
-- include_tasks: gnome-extensions.yml
 - include_tasks: kubectl.yml
 - include_tasks: docker.yml
 - include_tasks: open-ssh.yml
+- include_tasks: gnome-extensions.yml
+- include_tasks: vlc.yml
