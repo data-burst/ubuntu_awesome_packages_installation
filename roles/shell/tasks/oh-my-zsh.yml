@@ -5,7 +5,7 @@
   register: ohmyzsh_check
 
 - name: Install oh-my-zsh
-  ansible.builtin.shell:
+  shell:
     cmd: >
       ZSH={{ '/home/' + user + '/.oh-my-zsh' if user != 'root' else '/root/.oh-my-zsh' }} sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
   when: not ohmyzsh_check.stat.exists
