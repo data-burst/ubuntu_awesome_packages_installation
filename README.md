@@ -163,4 +163,4 @@ Open to suggestions and improvements! If there's a tool or utility you'd like to
 
 ## License
 
-Licensed under the MIT License. Check [LICENSE.md](LICENSE.md) for more details.
+Licensed under the MIT License. Check [LICENSE](LICENSE) for more details.
