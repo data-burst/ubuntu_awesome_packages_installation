@@ -19,7 +19,7 @@
 
 - name: Get architecture of host
   ansible.builtin.shell:
-    command: "dpkg --print-architecture"
+    cmd: "dpkg --print-architecture"
   register: architecture
 
 - name: Add docker apt repository
