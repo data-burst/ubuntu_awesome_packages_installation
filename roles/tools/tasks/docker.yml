@@ -18,7 +18,8 @@
     keyring: /etc/apt/keyrings/docker.gpg
 
 - name: Get architecture of host
-  ansible.builtin.shell: "dpkg --print-architecture"
+  ansible.builtin.shell:
+    command: "dpkg --print-architecture"
   register: architecture
 
 - name: Add docker apt repository
