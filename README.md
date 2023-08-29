@@ -41,12 +41,11 @@ A bash script to automatically set up your Ubuntu system with essential tools us
 To run the installation script, you can use the following command:
 
 ---
-
 ```bash
 curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --local --user <USER> [--set-dns <DNS_IP>]
 ```
-
 ---
+
 Replace **<USER>** with the desired user for running Ansible, and **<DNS_IP>** with the desired custom DNS IP if needed.
 
 This command will download the script from the specified URL and execute it with the --local flag, indicating that the playbook should run on the local machine. The --user flag allows you to specify the user under which Ansible should be executed. The optional --set-dns flag can be used to set a custom DNS IP.
@@ -81,37 +80,34 @@ The script will execute the playbook on the local machine, running as the specif
 If you want to run the playbook on a remote machine and set a custom DNS, you can use the following command:
 
 ---
-
 ```bash
 curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --remote --inventory /path/to/inventory --ssh-key /path/to/ssh/key [--set-dns <DNS_IP>]
 ```
-
 ---
+
 Replace **/path/to/inventory** with the actual path to your inventory file, **<SSH_KEY_FILE>** with the path to your SSH key file, and **<DNS_IP>** with the desired custom DNS IP if needed.
 
 Before running the command, make sure you have an SSH key set up. If you don't have an SSH key, you can generate one using the following command:
 
 ---
-
 ```bash
 ssh-keygen -t rsa -b 4096 -C "your_email@example.com"
 ```
-
 ---
+
 Replace **"your_email@example.com"** with your email address. Press Enter when prompted to specify the file in which to save the key (accept the default location) and to set a passphrase (optional).
 
 To set the SSH key on the remote machine, you can use the ssh-copy-id command. Here's an example:
 
 ---
-
 ```bash
 ssh-copy-id -i <SSH_KEY_FILE> user@remote_host
 ```
-
 ---
+
 Replace **<SSH_KEY_FILE>** with the path to your SSH public key file and user@remote_host with the username and hostname of the remote machine.
 
-Once the SSH key is set on the remote machine, you can use the --remote flag along with the appropriate inventory file and SSH key file paths in the installation script command mentioned earlie
+Once the SSH key is set on the remote machine, you can use the --remote flag along with the appropriate inventory file and SSH key file paths in the installation script command mentioned earlier.
 
 ### Creating the Inventory File 📌
 
@@ -122,7 +118,6 @@ To create an inventory file for remote machine configurations, follow these step
 2. Copy the following content into the file:
 
 ---
-
 ```bash
 ---
 all:
@@ -136,7 +131,6 @@ children:
     hosts:
         virtualmachine01:
 ```
-
 ---
 
 3. Save the file with a .yaml extension, for example, inventory.yaml.
