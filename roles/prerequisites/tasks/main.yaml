@@ -1,0 +1,36 @@
+---
+- name: Install required Python stuffs
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - python3
+      - python3-pip
+      - virtualenv
+  notify: 
+    - Install pipenv
+
+- name: Install Pyenv required packages
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - make
+      - build-essential
+      - libssl-dev
+      - zlib1g-dev
+      - libbz2-dev
+      - libreadline-dev
+      - libsqlite3-dev
+      - wget
+      - curl
+      - libncurses5-dev
+      - libncursesw5-dev 
+      - xz-utils 
+      - tk-dev 
+      - libffi-dev 
+      - liblzma-dev
+  notify:
+    - Install pyenv
