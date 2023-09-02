@@ -1,0 +1,6 @@
+---
+- name: Install fd-find
+  apt:
+    name: fd-find
+    state: present
+  become: true

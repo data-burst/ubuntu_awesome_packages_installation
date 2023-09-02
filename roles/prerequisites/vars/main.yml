@@ -1,0 +1,31 @@
+---
+python_required_stuff: 
+  - python3
+  - python3-pip
+  - virtualenv
+  - python3-setuptools
+
+required_packages:
+  - make
+  - build-essential
+  - libssl-dev
+  - zlib1g-dev
+  - libbz2-dev
+  - libreadline-dev
+  - libsqlite3-dev
+  - wget
+  - curl
+  - libncurses5-dev
+  - libncursesw5-dev
+  - apt-transport-https 
+  - xz-utils 
+  - tk-dev 
+  - libffi-dev 
+  - liblzma-dev
+  - ca-certificates
+  - gnupg
+  - tree
+  - git
+  - cmake
+  - libxcb-xfixes0-dev
+  - libxkbcommon-x11-dev

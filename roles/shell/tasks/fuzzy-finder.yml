@@ -1,0 +1,14 @@
+---
+- name: Clone fzf repository
+  git:
+    repo: https://github.com/junegunn/fzf.git
+    dest: "{{ '/home/' + user + '/.fzf' if user != 'root' else '/root/.fzf' }}"
+    depth: 1
+
+- name: Run fzf installation script
+  command: "{{ '/home/' + user + '/.fzf/install' if user != 'root' else '/root/.fzf/install' }}"
+  args:
+    creates: "{{ '/home/' + user + '/.fzf/bin/fzf' if user != 'root' else '/root/.fzf/bin/fzf' }}"
+
+- name: Change default shell to zsh
+  command: chsh -s /usr/bin/zsh

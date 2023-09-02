@@ -1,0 +1,6 @@
+---
+- name: Install VLC
+  apt:
+    name: vlc
+    state: present
+  become: true

@@ -1,0 +1,6 @@
+user: "{{ ansible_user }}"
+zsh_plugins:
+  - git
+  - docker
+zsh_theme: "xiong-chiamiov-plus"
+alacritty_repo: "ppa:mmstick76/alacritty"

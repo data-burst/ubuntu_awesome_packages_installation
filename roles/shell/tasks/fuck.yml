@@ -1,0 +1,12 @@
+--- 
+- name: Install fuck with pip
+  pip:
+    name: thefuck
+    executable: pip3
+    extra_args: "--user"
+
+- name: Add fuck path to PATH environment variablee
+  ansible.builtin.lineinfile:
+    path: "{{ '/home/' + user + '/.zshrc' if user != 'root' else '/root/.zshrc' }}"
+    line: "export PATH=$PATH:{{ '/home/' + user + '/.local/bin' if user != 'root' else '/root/.local/bin' }}"
+    insertafter: EOF

@@ -1,0 +1,41 @@
+- name: Make directory for gpg key
+  ansible.builtin.file:
+    path: /etc/apt/keyrings
+    state: directory
+    mode: '0755'
+
+- name: Download gpg key
+  ansible.builtin.apt_key:
+    url: "{{ docker_gpg_key_url }}"
+    state: present
+    keyring: /etc/apt/keyrings/docker.gpg
+
+- name: Get architecture of host
+  shell:
+    cmd: dpkg --print-architecture
+  register: architecture
+
+- name: Add docker apt repository
+  ansible.builtin.apt_repository:
+    update_cache: yes
+    repo: "deb [arch={{ architecture.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
+    state: present
+    filename: docker
+
+- name: Install Docker packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  become: true
+  loop: "{{ docker_packages }}"
+
+- name: Check Docker service status
+  systemd:
+    name: docker
+    state: started
+    enabled: yes
+  register: docker_status
+
+- name: Print Docker service status
+  debug:
+    var: docker_status

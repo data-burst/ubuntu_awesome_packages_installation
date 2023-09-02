@@ -1,0 +1,6 @@
+---
+- name: Install terminator
+  apt:
+    name: terminator
+    state: present
+  become: true

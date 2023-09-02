@@ -1,0 +1,11 @@
+---
+- name: Install required Python stuffs
+  become: true
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - "{{ item }}"
+  with_items: "{{ python_required_stuff }}"
+  notify: 
+    - Install pipenv

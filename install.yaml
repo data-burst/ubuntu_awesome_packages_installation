@@ -2,3 +2,6 @@
 - hosts: all
   roles:
     - prerequisites
+    - shell
+    - tools
+    - cleanup

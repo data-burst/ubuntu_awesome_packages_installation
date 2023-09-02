@@ -1,0 +1,6 @@
+- name: Remove DNS entries from /etc/resolv.conf
+  lineinfile:
+    path: /etc/resolv.conf
+    state: absent
+    regexp: '^{{ lookup("template", "roles/prerequisites/templates/resolv.conf.j2") }}'
+    

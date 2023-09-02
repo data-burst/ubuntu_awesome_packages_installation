@@ -1,0 +1,14 @@
+---
+- name: Get URL pointing to the latest alacritty .deb
+  # Ignore linter warning abot wget - it's cleaner than the alternative.
+  args:
+    warn: false
+  shell: wget --quiet https://github.com/jwilm/alacritty/releases -O- | grep "_amd64.deb" | grep release | cut -d '"' -f2 | head -1 | sed "s/^/https:\/\/github.com/"
+  register: alacritty_latest_deb_url
+  failed_when: alacritty_latest_deb_url.rc > 0
+  changed_when: false
+
+- name: Install alacritty
+  apt:
+    deb: "{{ alacritty_latest_deb_url.stdout }}"
+    state: present

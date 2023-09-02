@@ -1,0 +1,5 @@
+- name: Install Telegram
+  apt:
+    name: telegram-desktop
+    state: present
+  become: true

@@ -1,0 +1,12 @@
+---
+- name: Install autojump
+  apt:
+    name: autojump
+    state: present
+  become: true
+  
+- name: Add autojump plugin to zsh config file
+  ansible.builtin.replace:
+    path: "{{ '/home/' + user + '/.zshrc' if user != 'root' else '/root/.zshrc' }}"
+    regexp: '^(plugins=\(.*)(\))$'
+    replace: '\1 autojump\2'

@@ -1,0 +1,11 @@
+---
+- name: Update apt cache
+  apt:
+    update_cache: yes
+  become: true
+
+- name: Install Byobu
+  apt:
+    name: byobu
+    state: present
+  become: true

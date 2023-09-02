@@ -1,0 +1,13 @@
+---
+- name: Check if Snap package manager is installed
+  command: dpkg -s snapd
+  register: snap_output
+  ignore_errors: true
+
+- name: Install Snap package manager
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    pkg:
+      - snapd
+  when: snap_output.rc != 0
