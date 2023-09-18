@@ -1,4 +1,28 @@
 ---
 - include_tasks: required-packages.yml
-- include_tasks: python-stuffs.yml
+  tags:
+      - shell
+      - networking
+      - devops
+      - containers
+      - utilities
+      - development
+      - media
+      - communication
+      - monitoring
 - include_tasks: create-user.yml
+  tags:
+      - linux
+      - shell
+      - utilities
+      - development
+      - networking
+      - devops
+      - containers
+      - media
+      - communication
+      - monitoring
+- include_tasks: python-stuffs.yml
+  tags:
+      - shell
+      - python
