@@ -2,37 +2,34 @@
 # tasks file for tools
 - include_tasks: snap-package-manager.yaml
   tags:
-    - linux
+    - devops
 - include_tasks: telegram.yml
   tags: 
-    - communication
+    - desktop
 - include_tasks: monitoring-packages.yml
   tags:
-    - monitoring
     - devops
 - include_tasks: tweak.yml
   tags:
-    - linux
+    - devops
 - include_tasks: v2ray-plugin.yml
   tags:
-    - networking
+    - devops
 - include_tasks: shadowsocks.yml
   tags:
-    - networking
+    - devops
 - include_tasks: kubectl.yml
   tags:
-    - containers
     - devops
 - include_tasks: docker.yml
   tags:
-    - containers
     - devops
 - include_tasks: open-ssh.yml
   tags:
-    - networking
+    - devops
 - include_tasks: gnome-extensions.yml
   tags:
-    - linux
+    - devops
 - include_tasks: vlc.yml
   tags:
-    - media
+    - desktop

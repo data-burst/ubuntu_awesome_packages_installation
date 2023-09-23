@@ -7,7 +7,7 @@
     - shell
 - include_tasks: autojump.yml
   tags:
-    - utilities
+    - shell
 - include_tasks: alacritty.yml
   tags:
     - shell
@@ -16,22 +16,22 @@
     - shell
 - include_tasks: fuck.yml
   tags:
-    - utilities
+    - shell
 - include_tasks: fd-find.yml
   tags:
-    - utilities
+    - shell
 - include_tasks: fuzzy-finder.yml
   tags:
-    - utilities
+    - shell
 - include_tasks: nvim.yml
   tags:
-    - development
+    - shell
 - include_tasks: vim.yml
   tags:
-    - development
+    - shell
 - include_tasks: xclip.yml
   tags:
-    - utilities
+    - shell
 - include_tasks: zsh-autosuggestion.yml
   tags:
     - shell

@@ -2,27 +2,13 @@
 - include_tasks: required-packages.yml
   tags:
       - shell
-      - networking
       - devops
-      - containers
-      - utilities
-      - development
-      - media
-      - communication
-      - monitoring
+      - desktop
 - include_tasks: create-user.yml
   tags:
-      - linux
       - shell
-      - utilities
-      - development
-      - networking
       - devops
-      - containers
-      - media
-      - communication
-      - monitoring
+      - desktop
 - include_tasks: python-stuffs.yml
   tags:
       - shell
-      - python
