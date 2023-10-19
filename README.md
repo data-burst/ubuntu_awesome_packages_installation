@@ -22,13 +22,13 @@ A bash script to automatically set up your Ubuntu system with essential tools us
   - [Features 🌠](#features-)
   - [How to Use 🚀](#how-to-use-)
     - [Flags 🎏](#flags-)
-    - [Ansible Tags](#ansible-tags)
+    - [Tags 🔖](#tags-)
     - [Running in Local Mode with Custom DNS 📌](#running-in-local-mode-with-custom-dns-)
     - [Running on a Remote Machine with Custom DNS 📌](#running-on-a-remote-machine-with-custom-dns-)
     - [Creating the Inventory File 📌](#creating-the-inventory-file-)
   - [Tools Installed 🧰](#tools-installed-)
   - [Contributions 🤝](#contributions-)
-  - [License](#license)
+  - [License 📄](#license-)
 
 ## Features 🌠
 
@@ -64,8 +64,38 @@ This command will download the script from the specified URL and execute it with
 - --user <USER>: Specify the user for running Ansible (required for --local).
 - --tags <TAGS>: Specify tags for Ansible playbook tasks (comma-separated, e.g., 'devops,shell,desktop').
 
-### Ansible Tags
-The tasks for installing `VLC` and `Telegram` have `desktop` tag, all other tools have `devops` tag and all shell utilities have `shell` tag. You can find their details at the [Tools Installed 🧰](#tools-installed-) section.
+### Tags 🔖
+Here you can find all tags for Ansible and their related tasks.
+- Desktop
+  - VLC
+  - Telegram
+- DevOps
+  - open-ssh
+  - snap-package-manager
+  - docker 
+  - kubectl
+  - htop  
+  - iftop
+  - iostat
+  - iotop
+  - tweak
+  - shadowsocks
+  - v2ray-plugin
+  - gnome-extension
+- Shell
+  - zsh
+  - oh-my-zsh
+  - zsh-autosuggestion
+  - vim
+  - nvim
+  - alacritty
+  - terminator
+  - byobu
+  - fd-find
+  - fuzzy-finder
+  - xclip
+  - autojump
+  - fuck
 
 ### Running in Local Mode with Custom DNS 📌
 If you want to run the playbook in local mode and set a custom DNS, you can use the following command:
@@ -159,6 +189,6 @@ Here are some of the tools our Ansible playbook will install:
 
 Open to suggestions and improvements! If there's a tool or utility you'd like to see added, or any other enhancements, feel free to contribute. Please take a look at our [CONTIRIBUTION.md](https://github.com/data-burst/ubuntu_awesome_packages_installation/blob/master/CONTRIBUTING.md) file for more information on how to get started. We look forward to collaborating with you!
 
-## License
+## License 📄
 
 Licensed under the MIT License. Check [LICENSE](LICENSE) for more details.
