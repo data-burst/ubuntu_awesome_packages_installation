@@ -9,6 +9,8 @@ use_ssh_key=false
 ssh_key=""
 # Variable to store the repository location
 repo_location=""
+# Variable to store selected tags
+selected_tags=""
 
 # Function to display script usage
 display_usage() {
@@ -22,6 +24,7 @@ display_usage() {
     echo "  --inventory <PATH>     : Specify the path to the inventory file (required for --remote)"
     echo "  --ssh-key <SSH_KEY_FILE> : Specify the path to the SSH key file (required for --remote)"
     echo "  --user <USER>   : Specify the user for running Ansible (required for --local)"
+    echo "  --tags <TAGS>          : Specify tags for Ansible playbook tasks (comma-separated, e.g., 'devops,shell,desktop')"
 }
 
 # Parse command-line arguments
@@ -52,6 +55,10 @@ while [[ $# -gt 0 ]]; do
             ssh_key=$2
             shift 2
             ;;
+        --tags)
+            selected_tags=$2
+            shift 2
+            ;;
         --user)
             user=$2
             shift 2
@@ -66,6 +73,13 @@ while [[ $# -gt 0 ]]; do
             ;;
     esac
 done
+
+# Check if tags are provided
+if [ -z "$selected_tags" ]; then
+    echo "Error: Please specify at least one tag using the --tags option."
+    display_usage
+    exit 1
+fi
 
 # Function to get the location of the cloned repository
 get_repo_location() {
@@ -150,7 +164,7 @@ if [ "$flag" == "--local" ]; then
     fi
     
     sed -i "s/ansible_user: .*/ansible_user: $user/g" "$clone_dir/inventory.yaml"
-    ansible-playbook -i "$inventory_file" "$install_file" --connection=local  --become --become-user=root
+    ansible-playbook -i "$inventory_file" "$install_file" --connection=local  --become --become-user=root --tags "$selected_tags"
 
 elif [ "$flag" == "--remote" ]; then
     # Check if the --remote flag is used and enforce --ssh-key option
@@ -166,7 +180,7 @@ elif [ "$flag" == "--remote" ]; then
     fi
 
     # Execute Ansible with the specified options
-    ansible-playbook -i "$inventory_path" "$install_file" --private-key="$ssh_key"
+    ansible-playbook -i "$inventory_path" "$install_file" --private-key="$ssh_key" --tags "$selected_tags"
 else
     echo "Invalid option. Please use either --local or --remote flag."
     exit 1

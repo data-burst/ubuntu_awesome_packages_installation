@@ -22,12 +22,13 @@ A bash script to automatically set up your Ubuntu system with essential tools us
   - [Features 🌠](#features-)
   - [How to Use 🚀](#how-to-use-)
     - [Flags 🎏](#flags-)
+    - [Tags 🔖](#tags-)
     - [Running in Local Mode with Custom DNS 📌](#running-in-local-mode-with-custom-dns-)
     - [Running on a Remote Machine with Custom DNS 📌](#running-on-a-remote-machine-with-custom-dns-)
     - [Creating the Inventory File 📌](#creating-the-inventory-file-)
   - [Tools Installed 🧰](#tools-installed-)
   - [Contributions 🤝](#contributions-)
-  - [License](#license)
+  - [License 📄](#license-)
 
 ## Features 🌠
 
@@ -41,11 +42,11 @@ To run the installation script, you can use the following command:
 
 ---
 ```bash
-curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --local --user <USER> [--set-dns <DNS_IP>]
+curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --local --user <USER> [--set-dns <DNS_IP>] --tags <TAGS>
 ```
 ---
 
-Replace **<USER>** with the desired user for running Ansible, and **<DNS_IP>** with the desired custom DNS IP if needed.
+Replace **<USER>** with the desired user for running Ansible, **<DNS_IP>** with the desired custom DNS IP if needed, and **<TAGS>** with the desired ansible tags (devops,shell,desktop) to run only related tasks (you can set all of them to run all tasks, comma-separated, e.g., 'devops,shell,desktop').
 
 This command will download the script from the specified URL and execute it with the --local flag, indicating that the playbook should run on the local machine. The --user flag allows you to specify the user under which Ansible should be executed. The optional --set-dns flag can be used to set a custom DNS IP.
 
@@ -61,13 +62,47 @@ This command will download the script from the specified URL and execute it with
 - --inventory <PATH>: Specify the path to the inventory file (required for --remote).
 - --ssh-key <SSH_KEY_FILE>: Specify the path to the SSH key file (required for --remote).
 - --user <USER>: Specify the user for running Ansible (required for --local).
+- --tags <TAGS>: Specify tags for Ansible playbook tasks (comma-separated, e.g., 'devops,shell,desktop').
+
+### Tags 🔖
+Here you can find all tags for Ansible and their related tasks.
+- Desktop
+  - VLC
+  - Telegram
+- DevOps
+  - open-ssh
+  - snap-package-manager
+  - docker 
+  - kubectl
+  - htop  
+  - iftop
+  - iostat
+  - iotop
+  - tweak
+  - shadowsocks
+  - v2ray-plugin
+  - gnome-extension
+- Shell
+  - zsh
+  - oh-my-zsh
+  - zsh-autosuggestion
+  - vim
+  - nvim
+  - alacritty
+  - terminator
+  - byobu
+  - fd-find
+  - fuzzy-finder
+  - xclip
+  - autojump
+  - fuck
 
 ### Running in Local Mode with Custom DNS 📌
 If you want to run the playbook in local mode and set a custom DNS, you can use the following command:
 
 ---
 ```bash
-curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --local --user <USER> --set-dns <DNS_IP>
+curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --local --user <USER> --set-dns <DNS_IP> --tags <TAGS>
 ```
 ---
 Replace **<USER>** with the desired user for running Ansible, and **<DNS_IP>** with the desired custom DNS IP.
@@ -80,7 +115,7 @@ If you want to run the playbook on a remote machine and set a custom DNS, you ca
 
 ---
 ```bash
-curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --remote --inventory /path/to/inventory --ssh-key /path/to/ssh/key [--set-dns <DNS_IP>]
+curl -sSL "https://raw.githubusercontent.com/data-burst/ubuntu_awesome_packages_installation/installation.sh" | bash -s -- --remote --inventory /path/to/inventory --ssh-key /path/to/ssh/key [--set-dns <DNS_IP>] --tags <TAGS>
 ```
 ---
 
@@ -154,6 +189,6 @@ Here are some of the tools our Ansible playbook will install:
 
 Open to suggestions and improvements! If there's a tool or utility you'd like to see added, or any other enhancements, feel free to contribute. Please take a look at our [CONTIRIBUTION.md](https://github.com/data-burst/ubuntu_awesome_packages_installation/blob/master/CONTRIBUTING.md) file for more information on how to get started. We look forward to collaborating with you!
 
-## License
+## License 📄
 
 Licensed under the MIT License. Check [LICENSE](LICENSE) for more details.
