@@ -12,7 +12,7 @@
 
 - name: Fetch .zshrc from remote machine
   fetch:
-    src: /root/.zshrc
+    src: "{{ '/home/' + user + '/.zshrc' if user != 'root' else '/root/.zshrc' }}"
     dest: /tmp/.zshrc_remote
     flat: yes
 
@@ -20,8 +20,8 @@
   copy:
     src: /tmp/.zshrc_remote
     dest: "/home/{{ user }}/.zshrc"
-    owner: root
-    group: root
+    owner: "{{ user }}"
+    group: "{{ user }}"
     mode: "0644"
   when: user != 'root'
   notify: Set ZSH as default shell

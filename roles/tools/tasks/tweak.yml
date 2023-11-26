@@ -2,6 +2,7 @@
   ansible.builtin.apt_repository:
     repo: 'deb http://archive.ubuntu.com/ubuntu {{ ansible_distribution_release }} universe'
     state: present
+  become: true
 
 - name: Install gnome tweak
   apt:

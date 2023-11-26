@@ -8,9 +8,11 @@
   ansible.builtin.file:
     path: /etc/shadowsocks-libev/
     state: directory
+  become: true
 
 - name: Unarchive v2ray plugin
   ansible.builtin.unarchive:
     src: /tmp/v2ray-plugin-linux-amd64-v{{ shadowsocks_version }}.tar.gz
     dest: /etc/shadowsocks-libev/
     remote_src: yes
+  become: true

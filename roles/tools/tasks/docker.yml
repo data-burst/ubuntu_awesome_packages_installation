@@ -9,6 +9,7 @@
     url: "{{ docker_gpg_key_url }}"
     state: present
     keyring: /etc/apt/keyrings/docker.gpg
+  become: true
 
 - name: Get architecture of host
   shell:
@@ -21,6 +22,7 @@
     repo: "deb [arch={{ architecture.stdout }} signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu {{ ansible_distribution_release }} stable"
     state: present
     filename: docker
+  become: true
 
 - name: Install Docker packages
   apt:
