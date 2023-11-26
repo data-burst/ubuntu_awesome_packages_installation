@@ -6,3 +6,4 @@
     pkg:
       - gnome-shell-extensions
       - chrome-gnome-shell
+  become: true
